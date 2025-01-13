@@ -11,4 +11,12 @@ public class ReorganizeStringApplicationTest {
         assertEquals(expectedOutput, sut.reorganizeString("aab"));
     }
 
+    @Test
+    public void testStringReorganizeWithAAABLowercase() {
+        ReorganizeStringApplication sut = new ReorganizeStringApplication();
+        String expectedOutput = "Input: s = \"aaab\"\n" +
+                "Output: \"\"";
+        assertEquals(expectedOutput, sut.reorganizeString("aaab"));
+    }
+
 }
