@@ -1,13 +1,12 @@
 public class BinaryNumberApplication {
     public BinaryNumberApplication() {
     }
-    public String hasAlternatingBits(int number) {
+    public boolean hasAlternatingBits(int number) {
+        //write my own .toBinaryString()
         String numberAsABinaryString = Integer.toBinaryString(number);
-        String hasAlternating = "true";
-        if (numberAsABinaryString.contains("11") || numberAsABinaryString.contains("00")) {
-            hasAlternating = "false";
+        if (number == 1) {
+            return true;
         }
-        return "Output: " + hasAlternating + "\n" +
-                "Explanation: The binary representation of " + number + " is: " + numberAsABinaryString;
+        return !(numberAsABinaryString.contains("11") || numberAsABinaryString.contains("00"));
     }
 }

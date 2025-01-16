@@ -1,29 +1,27 @@
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class BinaryNumberApplicationTest {
+    private final BinaryNumberApplication binaryNumberApplication = new BinaryNumberApplication();
 
     @Test
     public void testBinaryNumberFor5() {
-        BinaryNumberApplication sut = new BinaryNumberApplication();
-        String expectedOutput = "Output: true\n" +
-                "Explanation: The binary representation of 5 is: 101";
-        assertEquals(expectedOutput, sut.hasAlternatingBits(5));
+        assertTrue(binaryNumberApplication.hasAlternatingBits(5));
     }
 
     @Test
     public void testBinaryNumberFor7() {
-        BinaryNumberApplication sut = new BinaryNumberApplication();
-        String expectedOutput = "Output: false\n" +
-                "Explanation: The binary representation of 7 is: 111";
-        assertEquals(expectedOutput, sut.hasAlternatingBits(7));
+        assertFalse(binaryNumberApplication.hasAlternatingBits(7));
     }
 
     @Test
     public void testBinaryNumberFor11() {
-        BinaryNumberApplication sut = new BinaryNumberApplication();
-        String expectedOutput = "Output: false\n" +
-                "Explanation: The binary representation of 11 is: 1011";
-        assertEquals(expectedOutput, sut.hasAlternatingBits(11));
+        assertFalse(binaryNumberApplication.hasAlternatingBits(11));
+    }
+
+    @Test
+    public void testBinaryNumberFor1() {
+        assertFalse(binaryNumberApplication.hasAlternatingBits(1));
     }
 }
