@@ -22,6 +22,6 @@ public class BinaryNumberApplicationTest {
 
     @Test
     public void testBinaryNumberFor1() {
-        assertFalse(binaryNumberApplication.hasAlternatingBits(1));
+        assertTrue(binaryNumberApplication.hasAlternatingBits(1));
     }
 }
