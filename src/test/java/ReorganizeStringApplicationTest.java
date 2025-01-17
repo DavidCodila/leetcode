@@ -2,21 +2,21 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ReorganizeStringApplicationTest {
+    private final ReorganizeStringApplication reorganizeStringapplication = new ReorganizeStringApplication();
 
     @Test
-    public void testStringReorganizeWithAABLowercase() {
-        ReorganizeStringApplication sut = new ReorganizeStringApplication();
-        String expectedOutput = "Input: s = \"aab\"\n" +
-                "Output: \"aba\"";
-        assertEquals(expectedOutput, sut.reorganizeString("aab"));
+    public void testStringReorganizeWithAAB() {
+        assertEquals("\"aba\"", reorganizeStringapplication.reorganizeString("aab"));
     }
 
     @Test
-    public void testStringReorganizeWithAAABLowercase() {
-        ReorganizeStringApplication sut = new ReorganizeStringApplication();
-        String expectedOutput = "Input: s = \"aaab\"\n" +
-                "Output: \"\"";
-        assertEquals(expectedOutput, sut.reorganizeString("aaab"));
+    public void testStringReorganizeWithAAAB() {
+        assertEquals("\"\"", reorganizeStringapplication.reorganizeString("aaab"));
+    }
+
+    @Test
+    public void testStringReorganizeWithAABCCDEFGH() {
+        assertEquals("\"bab\"", reorganizeStringapplication.reorganizeString("bba"));
     }
 
 }

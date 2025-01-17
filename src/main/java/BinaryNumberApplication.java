@@ -1,5 +1,3 @@
-import java.security.InvalidParameterException;
-
 public class BinaryNumberApplication {
 
     public BinaryNumberApplication() {
