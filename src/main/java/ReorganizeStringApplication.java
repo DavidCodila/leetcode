@@ -1,14 +1,15 @@
 public final class ReorganizeStringApplication {
 
     public static String reorganizeString(String input) {
-        if (input.length() == 1) {
+        if (input.length() == 1)
             return input;
-        }
+        if (input.length() == 2 && (input.charAt(0) == input.charAt(1)))
+            return "";
         char[] characterArray = input.toCharArray();
-        if (characterArray[0] == characterArray[1]) {
-            if (input.length() == 2)
-                return "";
-            return String.valueOf(shiftCharactersDown(characterArray));
+        for (int i = 0; i < characterArray.length - 1; i++) {
+            if (characterArray[i] == characterArray[i + 1]) {
+                return String.valueOf(shiftCharactersDown(characterArray));
+            }
         }
         return input;
     }

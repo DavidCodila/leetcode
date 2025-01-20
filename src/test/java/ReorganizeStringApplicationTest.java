@@ -23,4 +23,9 @@ public class ReorganizeStringApplicationTest {
         assertEquals("abca", ReorganizeStringApplication.reorganizeString("aabc"));
     }
 
+    @Test
+    public void testStringReorganizeWithABCC() {
+        assertEquals("cabc", ReorganizeStringApplication.reorganizeString("abcc"));
+    }
+
 }
