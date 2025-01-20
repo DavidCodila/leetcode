@@ -8,4 +8,14 @@ public class ReorganizeStringApplicationTest {
         assertEquals("a", ReorganizeStringApplication.reorganizeString("a"));
     }
 
+    @Test
+    public void testStringReorganizeWithAB() {
+        assertEquals("ab", ReorganizeStringApplication.reorganizeString("ab"));
+    }
+
+    @Test
+    public void testStringReorganizeWithAA() {
+        assertEquals("", ReorganizeStringApplication.reorganizeString("aa"));
+    }
+
 }
