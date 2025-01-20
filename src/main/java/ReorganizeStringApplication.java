@@ -1,21 +1,26 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-
 public final class ReorganizeStringApplication {
 
     public static String reorganizeString(String input) {
-        List<Character> charList = new ArrayList<>(input.length());
-        for (int i = 0; i < input.length(); i++) {
-            charList.add(input.charAt(i));
-        }
-        if (charList.size() == 1) {
+        if (input.length() == 1) {
             return input;
         }
-        if (Objects.equals(input, "ab")) {
-            return input;
+        char[] characterArray = input.toCharArray();
+        if (characterArray[0] == characterArray[1]) {
+            if (input.length() == 2)
+                return "";
+            return String.valueOf(shiftCharactersDown(characterArray));
         }
-        return "";
+        return input;
+    }
+
+    private static char[] shiftCharactersDown(char[] characterArray) {
+        int lastIndex = characterArray.length - 1;
+        char characterToShift = characterArray[0];
+        for (int i = 0; i < lastIndex; i++) {
+            characterArray[i] = characterArray[i + 1];
+        }
+        characterArray[lastIndex] = characterToShift;
+        return characterArray;
     }
 
 }
