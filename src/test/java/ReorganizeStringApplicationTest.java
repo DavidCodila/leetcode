@@ -29,8 +29,8 @@ public class ReorganizeStringApplicationTest {
     }
 
     @Test
-    public void testStringReorganizeWithAAAAB() {
-        assertEquals("", ReorganizeStringApplication.reorganizeString("aaaab"));
+    public void testStringReorganizeWithAAAABB() {
+        assertEquals("", ReorganizeStringApplication.reorganizeString("aaaabb"));
     }
 
     @Test
@@ -41,6 +41,11 @@ public class ReorganizeStringApplicationTest {
     @Test
     public void testStringReorganizeWithAAAABCDFE() {
         assertEquals("abacadafe", ReorganizeStringApplication.reorganizeString("aaaabcdfe"));
+    }
+
+    @Test
+    public void testStringReorganizeWithAAAA() {
+        assertEquals("", ReorganizeStringApplication.reorganizeString("aaaa"));
     }
 
 }
