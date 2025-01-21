@@ -1,27 +1,82 @@
 public final class ReorganizeStringApplication {
+    public static final int NO_REPEATED_CHARACTERS = -1;
 
     public static String reorganizeString(String input) {
         if (input.length() == 1)
             return input;
-        if (input.length() == 2 && (input.charAt(0) == input.charAt(1)))
-            return "";
-        char[] characterArray = input.toCharArray();
-        for (int i = 0; i < characterArray.length - 1; i++) {
-            if (characterArray[i] == characterArray[i + 1]) {
-                return String.valueOf(shiftCharactersDown(characterArray));
-            }
+        if (input.length() == 2) {
+            if (input.charAt(0) == input.charAt(1))
+                return "";
+            else
+                return input;
         }
-        return input;
+        char[] characterArray = input.toCharArray();
+        int repeatedCharIndex = getRepeatedCharIndex(characterArray);
+        while (repeatedCharIndex != NO_REPEATED_CHARACTERS) {
+            characterArray = reorganizeArrayAtIndex(characterArray, repeatedCharIndex);
+            repeatedCharIndex = getRepeatedCharIndex(characterArray);
+        }
+        return String.valueOf(characterArray);
     }
 
-    private static char[] shiftCharactersDown(char[] characterArray) {
-        int lastIndex = characterArray.length - 1;
-        char characterToShift = characterArray[0];
-        for (int i = 0; i < lastIndex; i++) {
-            characterArray[i] = characterArray[i + 1];
+    private static int getRepeatedCharIndex(char[] characterArray) {
+        for (int i = 0; i < characterArray.length - 1; i++) {
+            if (characterArray[i] == characterArray[i + 1])
+                return i;
         }
-        characterArray[lastIndex] = characterToShift;
+        return NO_REPEATED_CHARACTERS;
+    }
+
+    private static char[] reorganizeArrayAtIndex(char[] characterArray, int repeatedCharacterIndex) {
+        char characterToMove = characterArray[repeatedCharacterIndex];
+        String characterShiftDirection = getCharacterShiftDirection(characterArray, repeatedCharacterIndex);
+        if (characterShiftDirection.equals("right")) {
+
+            for (int i = 0; i < repeatedCharacterIndex - 1; i++) {
+                if (characterArray[repeatedCharacterIndex] == characterArray[i + 1] && characterArray[i + 1] != characterArray[i])
+            }
+        }
+        else if (characterShiftDirection.equals("left")) {
+
+        }
+        else {
+            return new char[]{};
+        }
         return characterArray;
     }
 
+    private static String getCharacterShiftDirection(char[] characterArray, int repeatedCharacterIndex) {
+        if (repeatedCharacterIndex == 0 || repeatedCharacterIndex == 1) {
+            return "right";
+        }
+        else if (repeatedCharacterIndex == characterArray.length - 1 || repeatedCharacterIndex == characterArray.length - 2) {
+            return "left";
+        }
+        else {
+            for (int i = 0; i < repeatedCharacterIndex - 1; i++) {
+                if (characterArray[repeatedCharacterIndex] != characterArray[i]
+                        && characterArray[repeatedCharacterIndex] != characterArray[i + 1]) {
+                    return "left";
+                }
+            }
+            return "right";
+        }
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

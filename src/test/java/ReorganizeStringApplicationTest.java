@@ -28,4 +28,19 @@ public class ReorganizeStringApplicationTest {
         assertEquals("cabc", ReorganizeStringApplication.reorganizeString("abcc"));
     }
 
+    @Test
+    public void testStringReorganizeWithAAAAB() {
+        assertEquals("", ReorganizeStringApplication.reorganizeString("aaaab"));
+    }
+
+    @Test
+    public void testStringReorganizeWithABCCCDFE() {
+        assertEquals("abacadafe", ReorganizeStringApplication.reorganizeString("abcccdfe"));
+    }
+
+    @Test
+    public void testStringReorganizeWithAAAABCDFE() {
+        assertEquals("abacadafe", ReorganizeStringApplication.reorganizeString("aaaabcdfe"));
+    }
+
 }
