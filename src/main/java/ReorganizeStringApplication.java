@@ -28,21 +28,34 @@ public final class ReorganizeStringApplication {
     }
 
     private static char[] reorganizeArrayAtIndex(char[] characterArray, int repeatedCharacterIndex) {
+        char[] emptyCharArray = new char[]{};
         char characterToMove = characterArray[repeatedCharacterIndex];
         String characterShiftDirection = getCharacterShiftDirection(characterArray, repeatedCharacterIndex);
-        if (characterShiftDirection.equals("right")) {
-
+        if (characterShiftDirection.equals("left")) {
             for (int i = 0; i < repeatedCharacterIndex - 1; i++) {
-                if (characterArray[repeatedCharacterIndex] == characterArray[i + 1] && characterArray[i + 1] != characterArray[i])
+                if (characterToMove != characterArray[i]
+                        && characterToMove != characterArray[i + 1]) {
+                    for (int j = repeatedCharacterIndex; j > i - 1; j--) {
+                        characterArray[j + 1] = characterArray[j];
+                    }
+                    characterArray[i + 1] = characterToMove;
+                    return characterArray;
+                }
             }
         }
-        else if (characterShiftDirection.equals("left")) {
-
+        else if (characterShiftDirection.equals("right")) {
+            for (int i = repeatedCharacterIndex; i < characterArray.length - 1; i++) {
+                if (characterToMove != characterArray[i]
+                        && characterToMove != characterArray[i + 1]) {
+                    for (int j = repeatedCharacterIndex; j < i; j++) {
+                        characterArray[j] = characterArray[j + 1];
+                    }
+                    characterArray[i] = characterToMove;
+                    return characterArray;
+                }
+            }
         }
-        else {
-            return new char[]{};
-        }
-        return characterArray;
+        return emptyCharArray;
     }
 
     private static String getCharacterShiftDirection(char[] characterArray, int repeatedCharacterIndex) {
