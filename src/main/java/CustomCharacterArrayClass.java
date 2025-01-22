@@ -1,61 +1,77 @@
 public class CustomCharacterArrayClass {
 
     private char[] array;
+    private int repeatedCharacterIndex;
+    private char characterToMove;
+    private boolean arrayContainsRepeatingCharacters;
 
     public CustomCharacterArrayClass(String userInput) {
         this.array = userInput.toCharArray();
+        setFieldVariables();
     }
 
-    public String reorganizeWihNoRepeatingCharacters() {
-        while (getRepeatedCharIndex() != -1) {
-            reorganizeArray();
-        }
-        return String.valueOf(this.array);
+    private void setFieldVariables()
+    {
+        this.repeatedCharacterIndex = getRepeatedCharIndex();
+        this.arrayContainsRepeatingCharacters = this.repeatedCharacterIndex != -1;
+        if (this.arrayContainsRepeatingCharacters)
+            this.characterToMove = this.array[this.repeatedCharacterIndex];
     }
 
     private int getRepeatedCharIndex() {
         for (int i = 0; i < this.array.length - 1; i++) {
-            if (this.array[i] == array[i + 1])
+            if (this.array[i] == this.array[i + 1])
                 return i;
         }
         return -1;
     }
 
-    private void reorganizeArray() {
-        char characterToMove = this.array[getRepeatedCharIndex()];
-        String characterShiftDirection = getCharacterShiftDirection();
-        if (characterShiftDirection.equals("left")) {
-            for (int i = 0; i < getRepeatedCharIndex() - 1; i++) {
-                if (characterToMove != this.array[i] && characterToMove != this.array[i + 1]) {
-                    for (int j = getRepeatedCharIndex(); j > i - 1; j--) {
-                        this.array[j + 1] = this.array[j];
-                    }
-                    this.array[i + 1] = characterToMove;
-                    return;
-                }
-            }
+    public String reorganizeWihNoRepeatingCharacters() {
+        while (this.arrayContainsRepeatingCharacters) {
+            reorganizeArray();
+            setFieldVariables();
         }
-        else if (characterShiftDirection.equals("right")) {
-            for (int i = getRepeatedCharIndex(); i < this.array.length - 1; i++) {
-                if (characterToMove != this.array[i] && characterToMove != this.array[i + 1]) {
-                    for (int j = getRepeatedCharIndex(); j < i; j++) {
-                        this.array[j] = this.array[j + 1];
-                    }
-                    this.array[i] = characterToMove;
-                    return;
-                }
-            }
-        }
-        this.array = new char[]{};
+        return String.valueOf(this.array);
     }
 
-    private String getCharacterShiftDirection() {
-        char characterToMove = this.array[getRepeatedCharIndex()];
-        for (int i = 0; i < getRepeatedCharIndex() - 1; i++) {
-            if (characterToMove != this.array[i] && characterToMove != this.array[i + 1]) {
-                return "left";
+    private void reorganizeArray() {
+        for (int i = 0; i < this.array.length - 1; i++) {
+            if (indexToShiftCharacterExists(i)) {
+                switch (getCharacterShiftDirection(i)) {
+                    case "left":
+                        shiftCharacterToTheLeft(i);
+                        return;
+                    case "right":
+                        shiftCharacterToTheRight(i);
+                        return;
+                }
             }
         }
+        this.array = new char[]{}; //returns empty char array if the array can not be rearranged
+    }
+
+    private boolean indexToShiftCharacterExists(int indexToShiftCharacterTo) {
+        return this.characterToMove != this.array[indexToShiftCharacterTo]
+                && this.characterToMove != this.array[indexToShiftCharacterTo + 1];
+    }
+
+    private String getCharacterShiftDirection(int indexToShiftCharacterTo) {
+        if (indexToShiftCharacterTo < this.repeatedCharacterIndex)
+            return "left";
         return "right";
+    }
+
+    private void shiftCharacterToTheLeft(int indexToShiftCharacterTo) {
+        for (int j = this.repeatedCharacterIndex; j > indexToShiftCharacterTo - 1; j--) {
+            this.array[j + 1] = this.array[j];
+        }
+        this.array[indexToShiftCharacterTo + 1] = this.characterToMove;
+    }
+
+    private void shiftCharacterToTheRight(int indexToShiftCharacterTo) {
+        for (int j = this.repeatedCharacterIndex; j < indexToShiftCharacterTo; j++) {
+            this.array[j] = this.array[j + 1];
+        }
+        this.array[indexToShiftCharacterTo] = this.characterToMove;
     }
 }
