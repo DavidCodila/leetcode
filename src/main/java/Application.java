@@ -1,6 +1,8 @@
+import java.text.NumberFormat;
+
 public class Application {
     public static void main(String[] args) {
-        new BinaryNumberApplication();
-        new ReorganizeStringApplication();
+        double monthlyMortgage = InterestCalculator.calculateMonthlyRepayments();
+        System.out.println("Mortgage: " + NumberFormat.getCurrencyInstance().format(monthlyMortgage));
     }
 }
