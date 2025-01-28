@@ -1,19 +1,19 @@
 public class Bank {
-    public static int getRichestCustomerWealth(int[][] arrayOfBankAccounts) {
-        if (arrayOfBankAccounts.length == 0)
+    public static int getRichestCustomerWealth(int[][] accounts) {
+        if (accounts.length == 0)
             return 0;
         int maxWealth = 0;
-        for (int[] BankAccounts : arrayOfBankAccounts) {
-            int customerWealth = getTotalWealth(BankAccounts);
+        for (int[] customer : accounts) {
+            int customerWealth = getTotalWealth(customer);
             if (customerWealth > maxWealth)
                 maxWealth = customerWealth;
         }
         return maxWealth;
     }
 
-    private static int getTotalWealth(int[] bankAccounts) {
+    private static int getTotalWealth(int[] customer) {
         int wealth = 0;
-        for (int bankAccount : bankAccounts) {
+        for (int bankAccount : customer) {
             wealth += bankAccount;
         }
         return wealth;
