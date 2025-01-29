@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FindNumbersTest {
@@ -31,6 +32,16 @@ public class FindNumbersTest {
     @Test
     public void TestFindEvenNumberOfDigitsNegative11() {
         assertEquals(1, FindNumbers.findEvenNumberOfDigits(new int[] { -11 }));
+    }
+
+    @Test
+    public void TestSearchRangeFailedToFindNumber() {
+        assertArrayEquals(new int[]{-1, -1}, FindNumbers.searchRange(new int[]{}, 1));
+    }
+
+    @Test
+    public void TestSearchRangeFor3OccurrencesOf5() {
+        assertArrayEquals(new int[]{4, 6}, FindNumbers.searchRange(new int[] { 1, 2, 3, 3, 5, 5, 5, 6, 8, 8, 10}, 5));
     }
 
 }
