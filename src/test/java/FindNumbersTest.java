@@ -44,4 +44,14 @@ public class FindNumbersTest {
         assertArrayEquals(new int[]{4, 6}, FindNumbers.searchRange(new int[] { 1, 2, 3, 3, 5, 5, 5, 6, 8, 8, 10}, 5));
     }
 
+    @Test
+    public void TestFindPeakIndexInMountainArray0_1_0() {
+        assertEquals(1, FindNumbers.findPeakIndexInMountainArray(new int[] { 0, 1, 0}));
+    }
+
+    @Test
+    public void TestFindPeakIndexInMountainArray0_1_2_3_2_1() {
+        assertEquals(3, FindNumbers.findPeakIndexInMountainArray(new int[] { 0, 1, 2, 3, 2, 1}));
+    }
+
 }

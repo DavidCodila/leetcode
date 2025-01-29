@@ -43,6 +43,22 @@ public class FindNumbers {
         return ans;
     }
 
+    public static int findPeakIndexInMountainArray(int[] nums) {
+        int start = 0;
+        int end = nums.length - 1;
+        while (start < end) {
+            int mid = start + (end - start) / 2;
+
+            if (nums[mid] > nums[mid + 1]) {
+                end = mid;
+            }
+            else {
+                start = mid + 1;
+            }
+        }
+        return nums[start];
+    }
+
     private static boolean isEvenNumberOfDigits(int num) {
         return getNumberOfDigits(num) % 2 == 0;
     }
