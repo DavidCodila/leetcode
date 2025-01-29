@@ -14,24 +14,33 @@ public class FindNumbers {
 
 
     public static int[] searchRange(int[] nums, int target) {
-        int indexOfTargetOccurrence = Binary.binarySearch(nums, target);
-        if (indexOfTargetOccurrence == -1)
-            return new int[]{-1, -1};
-        int max = indexOfTargetOccurrence;
-        int min = indexOfTargetOccurrence;
-        while (max < nums.length - 1) {
-            if (nums[max + 1] == target)
-                max++;
-            else
-                break;
+        return new int[] {
+                binarySearch(nums, target, true),
+                binarySearch(nums, target, false)
+        };
+    }
+
+    public static int binarySearch(int[] nums, int target, boolean findStartIndex) {
+        int ans = -1;
+        if (nums.length == 0)
+            return ans;
+        int start = 0;
+        int end = nums.length - 1;
+        while (start <= end) {
+            int mid = start + (end - start) / 2;
+            if (nums[mid] < target)
+                start = mid + 1;
+            else if (nums[mid] > target)
+                end = mid - 1;
+            else {
+                ans = mid;
+                if (findStartIndex)
+                    end = mid - 1;
+                else
+                    start = mid + 1;
+            }
         }
-        while (min > 0) {
-            if (nums[min - 1] == target)
-                min--;
-            else
-                break;
-        }
-        return new int[] {min, max};
+        return ans;
     }
 
     private static boolean isEvenNumberOfDigits(int num) {
