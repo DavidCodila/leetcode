@@ -83,7 +83,41 @@ public class FindNumbers {
         return ans;
     }
 
+    public static int rotatedSortedArraySearch(int[] nums, int target) {
+        int peakIndex = getPeakIndex(nums);
+        if (peakIndex == -1)
+            return Binary.binarySearch(nums, target);
+        if (nums[peakIndex] == target) {
+            return peakIndex;
+        }
+        if (target >= nums[0]) {
+            return Binary.binarySearchWithAscendList(nums, target, 0, peakIndex);
+        }
+        else {
+            return Binary.binarySearchWithAscendList(nums, target, peakIndex + 1, nums.length - 1);
+        }
+    }
 
+    private static int getPeakIndex(int[] nums) {
+        int start = 0;
+        int end = nums.length - 1;
+        while (start <= end) {
+            int mid = start + (end - start) / 2;
+            if (mid < end && (nums[mid] > nums[mid + 1])) {
+                return mid;
+            }
+            if (mid > start && (nums[mid] < nums[mid - 1])) {
+                return mid - 1;
+            }
+            if (nums[mid] <= nums[start]) {
+                end = mid - 1;
+            }
+            else {
+                start = mid + 1;
+            }
+        }
+        return -1;
+    }
 
     private static boolean isEvenNumberOfDigits(int num) {
         return getNumberOfDigits(num) % 2 == 0;

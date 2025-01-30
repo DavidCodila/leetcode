@@ -65,4 +65,14 @@ public class FindNumbersTest {
         assertEquals(1, FindNumbers.findInMountainArray(4, mountainArray));
     }
 
+    @Test
+    public void TestRotatedSortedArraySearch3_1_Find1() {
+        assertEquals(1, FindNumbers.rotatedSortedArraySearch(new int[] {3, 1}, 1));
+    }
+
+    @Test
+    public void TestRotatedSortedArraySearch4_5_6_7_0_1_2_Find0() {
+        assertEquals(4, FindNumbers.rotatedSortedArraySearch(new int[] {4, 5, 6, 7, 0, 1, 2}, 0));
+    }
+
 }
