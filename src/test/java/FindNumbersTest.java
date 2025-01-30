@@ -54,4 +54,15 @@ public class FindNumbersTest {
         assertEquals(3, FindNumbers.findPeakIndexInMountainArray(new int[] { 0, 1, 2, 3, 2, 1}));
     }
 
+    @Test
+    public void TestFindPeakIndexInMountainArray0_4_3_2_1() {
+        assertEquals(1, FindNumbers.findPeakIndexInMountainArray(new int[] { 0, 4, 3, 2, 1}));
+    }
+
+    @Test
+    public void TestFindInMountainArray0_4_3_2_1_Find4() {
+        MountainArray mountainArray = new MountainArray(new int[] { 0, 4, 3, 2, 1});
+        assertEquals(1, FindNumbers.findInMountainArray(4, mountainArray));
+    }
+
 }
