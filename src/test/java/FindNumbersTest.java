@@ -75,4 +75,14 @@ public class FindNumbersTest {
         assertEquals(4, FindNumbers.rotatedSortedArraySearch(new int[] {4, 5, 6, 7, 0, 1, 2}, 0));
     }
 
+    @Test
+    public void TestFindRotatedCountInRotatedSortedArray4_5_6_7_0_1_2() {
+        assertEquals(4, FindNumbers.findRotatedCountInRotatedSortedArray(new int[] {4, 5, 6, 7, 0, 1, 2}));
+    }
+
+    @Test
+    public void TestSplitArrayLargestSum7_2_5_10_8_With_2_Substrings() {
+        assertEquals(18, FindNumbers.splitArrayLargestSum(new int[] {7, 2, 5, 10, 8}, 2));
+    }
+
 }

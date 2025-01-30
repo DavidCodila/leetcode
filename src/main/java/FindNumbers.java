@@ -83,6 +83,15 @@ public class FindNumbers {
         return ans;
     }
 
+    public static int splitArrayLargestSum(int[] nums, int numberOfSubstrings) {
+        return 0;
+    }
+
+    public static int findRotatedCountInRotatedSortedArray(int[] nums) {
+        int peak = getPeakIndex(nums);
+        return peak + 1;
+    }
+
     public static int rotatedSortedArraySearch(int[] nums, int target) {
         int peakIndex = getPeakIndex(nums);
         if (peakIndex == -1)
